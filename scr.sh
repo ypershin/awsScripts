@@ -9,7 +9,7 @@ wf="pjm"
 
 function process_link {
 	curl -o $wf/$fn.html $pth/$page
-	./py1.sh $fn > $wf/$fn.txt
+	python h2t.py $wf/$fn.html > $wf/$fn.txt
 }
 
 
@@ -31,17 +31,15 @@ n=0
 while [ "x${arr[n]}" != "x" ]; do
   page=${arr[n]}
   fn=${arr[n+1]}
-#  echo $page $fn 
-#  process_link
+  echo $page $fn 
+  process_link
   n=$(( $n+2 ))
 done
 
-echo 'downloading...'
 
 fn=20160211.csv
-curl -o $wf/$fn http://ftp.pjm.com/pub/account/lmp/$fn
-# curl 'http://www.pjm.com/pub/account/lmpmonthly/201601-da.csv' > $wf/201601-da.csv
-# curl 'ftp://ftp.pjm.com/pub/account/lmpmonthly/201601-da.csv' > $wf/201601-da.csv
+echo "downloading $fn"
+# curl -o $wf/$fn http://ftp.pjm.com/pub/account/lmp/$fn
 
 exit
 
